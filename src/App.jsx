@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import useTheme, { ThemeProvider } from "./context/ThemeContext";
 import Input from "./components/Input";
+import Main from "./components/Main";
 
 function App() {
   const [themeMode,setThemeMode] = useState()
@@ -38,9 +39,10 @@ function App() {
   }, [word, url]);
 
   return (
-    <>
+    <div>
       <Input  search={search} setSearch={setSearch} handleSearch={handleSearch}/>
-    </>
+      <Main data={data}/>
+    </div>
       
     
   );
