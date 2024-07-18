@@ -1,7 +1,17 @@
 import React from 'react'
 
-export default function Input() {
+
+export default function Input({search,setSearch,handleSearch}) {
   return (
-    <div>Input</div>
+    <div>
+      <input type="text"
+      value={search}
+      placeholder='Enter the word'
+      onChange={(e) => {
+        setSearch(e.target.value)
+      }}
+      />
+      <button onClick={handleSearch}>Search</button>
+    </div>
   )
 }

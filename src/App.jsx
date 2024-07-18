@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import useTheme, { ThemeProvider } from "./context/ThemeContext";
+import Input from "./components/Input";
 
 function App() {
+  const [themeMode,setThemeMode] = useState()
   const [data, setData] = useState(null);
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -22,6 +25,7 @@ function App() {
       try {
         const response = await axios.get(url);
         setData(response.data);
+        console.log(response.data)
       } catch (error) {
         if (axios.isCancel(error)) return;
         setError(true);
@@ -35,36 +39,10 @@ function App() {
 
   return (
     <>
-      <input
-        type="text"
-        value={search}
-        onChange={(e) => {
-          e.preventDefault();
-          setSearch(e.target.value);
-        }}
-        placeholder="Enter a word"
-        className="border-md rounded-md border-black px-2 py-2 mx-5 my-5"
-      />
-      <button
-        className="px-2 py-2 bg-rose-700 text-white font-mono text-3xl rounded-md"
-        onClick={handleSearch}
-      >
-        Click
-      </button>
-      {loading && <p className="text-center text-blue-400 font-mono font-semibold text-3xl">Loading...</p>}
-      {error && <p className="text-center text-red-500 font-mono font-semibold text-3xl">Error fetching data</p>}
-      {data && (
-        <div>
-          <h1 className="text-center text-blue-400 font-mono font-semibold text-3xl">{word}</h1>
-          {data[0].phonetics.map((meaning, index) => (
-            <div key={index}>
-              <p><strong>{meaning.text}</strong></p>
-              
-            </div>
-          ))}
-        </div>
-      )}
+      <Input  search={search} setSearch={setSearch} handleSearch={handleSearch}/>
     </>
+      
+    
   );
 }
 
