@@ -68,7 +68,7 @@ function App() {
         </div>
         {loading && <LoadingPage />}
         {error && <ErrorPage />}
-        {data && <Main data={data} />}
+        {!loading && !error && data && <Main data={data} />}
       </div>
     </ThemeProvider>
   );
