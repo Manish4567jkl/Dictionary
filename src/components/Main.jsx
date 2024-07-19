@@ -23,9 +23,9 @@ function Main({ data }) {
               {phonetic.audio && (
                 <button
                   onClick={() => playAudio(phonetic.audio)}
-                  className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded transition"
+                  className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-full transition dark:text-white"
                 >
-                  Play Audio
+                  <i className="fa-solid fa-play"></i>
                 </button>
               )}
             </div>
