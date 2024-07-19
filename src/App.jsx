@@ -43,7 +43,6 @@ function App() {
       try {
         const response = await axios.get(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
         setData(response.data);
-        
       } catch (error) {
         if (axios.isCancel(error)) return;
         setError(true);
@@ -55,14 +54,11 @@ function App() {
     fetchData();
   }, [word]);
 
-
-
-
   return (
     <ThemeProvider value={{ themeMode, lightTheme, darkTheme }}>
-      <div className="container mx-auto p-6 min-h-screen bg-white dark:bg-gray-900 transition-all">
+      <div className="container mx-auto px-4 py-6 min-h-screen bg-white dark:bg-gray-900 transition-all">
         <Header />
-        <div className="flex justify-between items-center mb-6">
+        <div className="flex flex-col md:flex-row justify-between items-center mb-6">
           <Input search={search} setSearch={setSearch} handleSearch={handleSearch} />
           <ThemeBtn />
         </div>

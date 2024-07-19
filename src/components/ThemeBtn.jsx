@@ -1,26 +1,25 @@
 import React from 'react';
 import useTheme from '../context/ThemeContext';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
 
 function ThemeBtn() {
   const { themeMode, lightTheme, darkTheme } = useTheme();
 
-  const toggleTheme = () => {
-    if (themeMode === 'dark') {
-      lightTheme();
-    } else {
+  const onChangeBtn = (e) => {
+    const darkModeStatus = e.currentTarget.checked;
+
+    if (darkModeStatus) {
       darkTheme();
+    } else {
+      lightTheme();
     }
   };
 
   return (
     <button
-      onClick={toggleTheme}
-      className={`p-3 rounded-full transition duration-200 ease-in-out 
-        ${themeMode === 'dark'  ? 'bg-sky-400 text-yellow-400' : 'bg-slate-950 text-white'}`}
+      onClick={() => (themeMode === 'light' ? darkTheme() : lightTheme())}
+      className="flex items-center justify-center w-12 h-12 rounded-full bg-sky-500 dark:bg-yellow-500 text-white shadow-md transition-transform hover:scale-105"
     >
-      <FontAwesomeIcon icon={themeMode === 'dark' ? faSun : faMoon} />
+      <i className={`fa-solid ${themeMode === 'light' ? 'fa-sun' : 'fa-moon'}`}></i>
     </button>
   );
 }
