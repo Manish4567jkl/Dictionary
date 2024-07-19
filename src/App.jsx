@@ -39,11 +39,12 @@ function App() {
   }, [word, url]);
 
   return (
-    <div>
-      <Input  search={search} setSearch={setSearch} handleSearch={handleSearch}/>
-      <Main data={data}/>
-    </div>
-      
+    <div className="container mx-auto p-6">
+    <Input search={search} setSearch={setSearch} handleSearch={handleSearch} />
+    {loading && <p>Loading...</p>}
+    {error && <p>Error fetching data.</p>}
+    {data && <Main data={data} />}
+  </div>
     
   );
 }
